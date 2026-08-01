@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ஸ்ரீ சாஸ்தா ஜோதிடம் | Sri Sastha Jothidam</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Catamaran:wght@400;600;700;900&family=Noto+Sans+Tamil:wght@400;500;600;700;800&family=Cormorant+Garamond:ital@1&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --night: #171034;
+    --night-deep: #0e0a24;
+    --gold: #c9a227;
+    --gold-soft: #e4c65e;
+    --vermillion: #8a1f2b;
+    --vermillion-bright: #b6293a;
+    --sand: #f3e6c8;
+    --sand-dim: #cbb98f;
+    --line: rgba(201,162,39,0.28);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background: var(--night);
+    color: var(--sand);
+    font-family: 'Noto Sans Tamil', 'Catamaran', sans-serif;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important;}
+  }
+
+  a{color:inherit;}
+
+  /* Starfield bg */
+  .stars{
+    position: fixed; inset:0; z-index:0; pointer-events:none;
+    background-image:
+      radial-gradient(1.5px 1.5px at 20px 30px, rgba(243,230,200,0.5), transparent),
+      radial-gradient(1px 1px at 120px 80px, rgba(243,230,200,0.4), transparent),
+      radial-gradient(1.5px 1.5px at 240px 150px, rgba(201,162,39,0.5), transparent),
+      radial-gradient(1px 1px at 320px 40px, rgba(243,230,200,0.35), transparent),
+      radial-gradient(1.5px 1.5px at 60px 200px, rgba(243,230,200,0.4), transparent),
+      radial-gradient(1px 1px at 400px 260px, rgba(201,162,39,0.4), transparent);
+    background-size: 440px 320px;
+    background-repeat: repeat;
+    opacity:0.7;
+  }
+
+  /* Zodiac wheel signature element */
+  .wheel-wrap{
+    position:absolute; top:-120px; right:-160px; width:520px; height:520px;
+    z-index:0; opacity:0.16; pointer-events:none;
+  }
+  .wheel{
+    width:100%; height:100%;
+    animation: spin 140s linear infinite;
+  }
+  @keyframes spin{ to{ transform: rotate(360deg); } }
+
+  header{
+    position:relative; z-index:2;
+    padding: 30px 6vw 0;
+  }
+  nav{
+    display:flex; justify-content:space-between; align-items:center;
+    max-width:1180px; margin:0 auto;
+    border-bottom:1px solid var(--line);
+    padding-bottom:18px;
+  }
+  .brandmark{
+    display:flex; align-items:center; gap:12px;
+  }
+  .brandmark .om{
+    width:38px; height:38px; border-radius:50%;
+    border:1px solid var(--gold);
+    display:flex; align-items:center; justify-content:center;
+    color:var(--gold-soft); font-size:19px;
+  }
+  .brand-text{ font-family:'Catamaran', sans-serif; letter-spacing:0.14em; font-size:12px; color: var(--sand-dim); text-transform:uppercase;}
+  .nav-links{ display:flex; gap:24px; font-size:14px; letter-spacing:0.04em;}
+  .nav-links a{ text-decoration:none; opacity:0.85; transition:opacity .2s;}
+  .nav-links a:hover{ opacity:1; color:var(--gold-soft);}
+  .nav-cta{
+    border:1px solid var(--gold); color:var(--gold-soft);
+    padding:9px 20px; border-radius:2px; font-size:13px; text-decoration:none;
+    letter-spacing:0.05em;
+    transition: background .2s, color .2s;
+  }
+  .nav-cta:hover{ background:var(--gold); color:var(--night-deep);}
+
+  /* Hero */
+  .hero{
+    position:relative; z-index:2;
+    max-width:1180px; margin:0 auto;
+    padding: 90px 6vw 70px;
+    display:grid; grid-template-columns: 1.15fr 0.85fr; gap:40px; align-items:center;
+  }
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:10px;
+    font-family:'Catamaran',sans-serif; font-size:12.5px; letter-spacing:0.22em;
+    color:var(--gold-soft); text-transform:uppercase; margin-bottom:26px;
+  }
+  .eyebrow::before{ content:''; width:28px; height:1px; background:var(--gold);}
+  h1{
+    font-family:'Noto Sans Tamil', sans-serif;
+    font-weight:800;
+    font-size: clamp(38px, 5.2vw, 62px);
+    line-height:1.16;
+    color:var(--sand);
+    margin-bottom:22px;
+  }
+  h1 span{ color:var(--gold-soft);}
+  .hero-sub{
+    font-size:17px; color:var(--sand-dim); max-width:520px; margin-bottom:34px;
+  }
+  .hero-actions{ display:flex; gap:16px; flex-wrap:wrap; }
+  .btn-primary{
+    background: linear-gradient(135deg, var(--vermillion-bright), var(--vermillion));
+    color: var(--sand);
+    padding:15px 30px; border:none; border-radius:2px;
+    font-size:15px; font-weight:600; letter-spacing:0.03em;
+    text-decoration:none; display:inline-flex; align-items:center; gap:10px;
+    box-shadow: 0 12px 30px -12px rgba(138,31,43,0.7);
+    transition: transform .2s;
+  }
+  .btn-primary:hover{ transform: translateY(-2px);}
+  .btn-ghost{
+    padding:15px 26px; border:1px solid var(--line); border-radius:2px;
+    color:var(--sand-dim); text-decoration:none; font-size:15px;
+    transition: border-color .2s, color .2s;
+  }
+  .btn-ghost:hover{ border-color:var(--gold); color:var(--gold-soft);}
+
+  .hero-emblem{
+    justify-self:center;
+    width:min(320px, 90%);
+    aspect-ratio:1;
+    position:relative;
+  }
+  .hero-emblem svg{ width:100%; height:100%; }
+
+  /* Section shell */
+  section{ position:relative; z-index:2; max-width:1180px; margin:0 auto; padding: 60px 6vw;}
+  .section-head{ margin-bottom:44px; }
+  .section-eyebrow{
+    font-family:'Catamaran',sans-serif; font-size:12px; letter-spacing:0.22em;
+    color:var(--gold-soft); text-transform:uppercase; margin-bottom:12px;
+  }
+  .section-title{
+    font-family:'Noto Sans Tamil', sans-serif; font-weight:700;
+    font-size: clamp(26px, 3.2vw, 36px); color:var(--sand);
+  }
+  hr.divider{
+    border:none; border-top:1px solid var(--line); margin: 0 auto 60px;
+    max-width:1180px; width:88%;
+  }
+
+  /* Services */
+  .service-grid{
+    display:grid; grid-template-columns: repeat(2, 1fr); gap:1px;
+    background: var(--line);
+    border:1px solid var(--line);
+  }
+  .service-card{
+    background: var(--night-deep);
+    padding: 34px 30px;
+    display:flex; flex-direction:column; gap:14px;
+    transition: background .25s;
+  }
+  .service-card:hover{ background: rgba(201,162,39,0.06); }
+  .service-glyph{
+    width:44px; height:44px; border-radius:50%;
+    border:1px solid var(--gold); color:var(--gold-soft);
+    display:flex; align-items:center; justify-content:center;
+    font-size:19px;
+  }
+  .service-name{
+    font-size:19px; font-weight:600; color:var(--sand);
+  }
+  .service-desc{ font-size:14.5px; color:var(--sand-dim); flex-grow:1; }
+  .service-foot{
+    display:flex; justify-content:space-between; align-items:center;
+    padding-top:14px; border-top:1px solid var(--line);
+  }
+  .price{ font-family:'Catamaran',sans-serif; font-size:20px; font-weight:700; color:var(--gold-soft);}
+  .pay-link{
+    font-size:13px; letter-spacing:0.04em; text-decoration:none;
+    color:var(--sand); border:1px solid var(--vermillion-bright);
+    background: rgba(138,31,43,0.25);
+    padding:8px 16px; border-radius:2px;
+    transition: background .2s, color .2s;
+  }
+  .pay-link:hover{ background:var(--vermillion-bright); color:#fff;}
+
+  /* About */
+  .about-container{ display:flex; flex-direction:column; gap:40px; }
+  .about-top{ display:grid; grid-template-columns: 0.9fr 1.1fr; gap:56px; align-items:center; }
+  .about-quote{
+    font-family:'Cormorant Garamond', serif; font-style:italic;
+    font-size:22px; color:var(--gold-soft); line-height:1.5;
+    border-left:2px solid var(--gold); padding-left:24px;
+  }
+  .about-body p{ color:var(--sand-dim); font-size:15.5px; margin-bottom:16px; }
+  .about-body strong{ color:var(--sand); font-weight:600;}
+  
+  .about-details-box{
+    background: var(--night-deep);
+    border: 1px solid var(--line);
+    padding: 30px;
+    border-radius: 4px;
+  }
+  .about-details-box h3{
+    color: var(--gold-soft);
+    margin-bottom: 16px;
+    font-size: 20px;
+  }
+  .about-details-box ul{
+    list-style-type: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 12px;
+  }
+  .about-details-box li{
+    color: var(--sand-dim);
+    position: relative;
+    padding-left: 20px;
+  }
+  .about-details-box li::before{
+    content: "✦";
+    position: absolute;
+    left: 0;
+    color: var(--gold);
+  }
+
+  /* Contact */
+  .contact-panel{
+    background: var(--night-deep);
+    border:1px solid var(--line);
+    padding: 48px 6vw;
+    display:grid; grid-template-columns: 1fr 1fr 1fr; gap:32px;
+  }
+  .contact-item .label{
+    font-family:'Catamaran',sans-serif; font-size:11.5px; letter-spacing:0.2em;
+    text-transform:uppercase; color:var(--sand-dim); margin-bottom:10px;
+  }
+  .contact-item .value{ font-size:17px; color:var(--sand); }
+  .contact-item a.value{ text-decoration:none; display:block; }
+  .contact-item a.value:hover{ color:var(--gold-soft); }
+
+  /* Policy Box Styling */
+  .policy-box {
+    background: var(--night-deep);
+    border: 1px solid var(--line);
+    padding: 36px;
+    margin-bottom: 40px;
+    border-radius: 4px;
+  }
+  .policy-box h3 {
+    color: var(--gold-soft);
+    font-size: 22px;
+    margin-bottom: 16px;
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 10px;
+  }
+  .policy-box h4 {
+    color: var(--sand);
+    font-size: 16px;
+    margin: 16px 0 8px 0;
+  }
+  .policy-box p, .policy-box ul {
+    color: var(--sand-dim);
+    font-size: 14.5px;
+    margin-bottom: 14px;
+  }
+  .policy-box ul {
+    padding-left: 20px;
+  }
+  .policy-box li {
+    margin-bottom: 8px;
+  }
+
+  footer{
+    position:relative; z-index:2;
+    text-align:center; padding: 40px 6vw 50px;
+    color: var(--sand-dim); font-size:13px;
+    border-top:1px solid var(--line);
+  }
+  footer .footer-links{
+    margin-bottom: 16px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  footer .footer-links a{
+    text-decoration: none;
+    color: var(--sand-dim);
+    transition: color 0.2s;
+  }
+  footer .footer-links a:hover{
+    color: var(--gold-soft);
+  }
+  footer .power{ margin-top:8px; letter-spacing:0.04em; opacity:0.7; }
+
+  @media (max-width: 860px){
+    .hero{ grid-template-columns:1fr; padding-top:60px; }
+    .hero-emblem{ order:-1; width:220px; }
+    .service-grid{ grid-template-columns:1fr; }
+    .about-top{ grid-template-columns:1fr; }
+    .contact-panel{ grid-template-columns:1fr; text-align:left; gap:26px;}
+    .nav-links{ display:none; }
+    .wheel-wrap{ width:340px; height:340px; top:-60px; right:-140px;}
+    .policy-box{ padding: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="stars"></div>
+
+<div class="wheel-wrap">
+  <svg class="wheel" viewBox="0 0 200 200">
+    <circle cx="100" cy="100" r="98" fill="none" stroke="#c9a227" stroke-width="0.6"/>
+    <circle cx="100" cy="100" r="80" fill="none" stroke="#c9a227" stroke-width="0.4"/>
+    <circle cx="100" cy="100" r="62" fill="none" stroke="#c9a227" stroke-width="0.4"/>
+    <g stroke="#c9a227" stroke-width="0.4">
+      <line x1="100" y1="2" x2="100" y2="198"/>
+      <line x1="2" y1="100" x2="198" y2="100"/>
+      <line x1="30" y1="30" x2="170" y2="170"/>
+      <line x1="170" y1="30" x2="30" y2="170"/>
+    </g>
+    <g fill="#c9a227">
+      <circle cx="100" cy="2" r="2"/>
+      <circle cx="100" cy="198" r="2"/>
+      <circle cx="2" cy="100" r="2"/>
+      <circle cx="198" cy="100" r="2"/>
+      <circle cx="30" cy="30" r="2"/>
+      <circle cx="170" cy="170" r="2"/>
+      <circle cx="170" cy="30" r="2"/>
+      <circle cx="30" cy="170" r="2"/>
+    </g>
+  </svg>
+</div>
+
+<!-- Header -->
+<header>
+  <nav>
+    <div class="brandmark">
+      <div class="om">ௐ</div>
+      <div class="brand-text">Sri Sastha Jothidam</div>
+    </div>
+    <div class="nav-links">
+      <a href="#services">சேவைகள்</a>
+      <a href="#about">எங்களைப் பற்றி</a>
+      <a href="#contact">தொடர்பு</a>
+      <a href="#policies">கொள்கைகள்</a>
+    </div>
+    <a class="nav-cta" href="tel:8489351933">அழையுங்கள்</a>
+  </nav>
+</header>
+
+<!-- Hero Section -->
+<div class="hero">
+  <div>
+    <div class="eyebrow">நாகப்பட்டினம் மாவட்டம்</div>
+    <h1>வானவெளியில் எழுதப்பட்ட<br><span>உங்கள் வாழ்வின் பாதை</span></h1>
+    <p class="hero-sub">சபரிகிரீஸ்வரன் அவர்களின் வழிகாட்டுதலில், பாரம்பரிய ஜோதிட முறைப்படி ஜாதகம், பொருத்தம், ராசி பலன் மற்றும் பரிகாரங்கள் — தெளிவும் நம்பிக்கையும் தரும் ஆலோசனை.</p>
+    <div class="hero-actions">
+      <a class="btn-primary" href="#services">சேவைகளை காண →</a>
+      <a class="btn-ghost" href="tel:8489351933">📞 8489351933</a>
+    </div>
+  </div>
+  <div class="hero-emblem">
+    <svg viewBox="0 0 240 240">
+      <circle cx="120" cy="120" r="110" fill="none" stroke="#c9a227" stroke-width="1"/>
+      <circle cx="120" cy="120" r="92" fill="none" stroke="#c9a227" stroke-width="0.6" opacity="0.7"/>
+      <circle cx="120" cy="120" r="74" fill="none" stroke="#8a1f2b" stroke-width="0.8" opacity="0.8"/>
+      <g stroke="#c9a227" stroke-width="0.5" opacity="0.8">
+        <line x1="120" y1="10" x2="120" y2="230"/>
+        <line x1="10" y1="120" x2="230" y2="120"/>
+        <line x1="45" y1="45" x2="195" y2="195"/>
+        <line x1="195" y1="45" x2="45" y2="195"/>
+      </g>
+      <text x="120" y="132" text-anchor="middle" font-size="46" fill="#e4c65e" font-family="Noto Sans Tamil, sans-serif">ௐ</text>
+    </svg>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- Services Section -->
+<section id="services">
+  <div class="section-head">
+    <div class="section-eyebrow">Services</div>
+    <div class="section-title">எங்கள் சேவைகள் &amp; கட்டணம்</div>
+  </div>
+  <div class="service-grid">
+
+    <div class="service-card">
+      <div class="service-glyph">☉</div>
+      <div class="service-name">ஜாதகம் கணிக்க</div>
+      <div class="service-desc">பிறந்த நேரம், தேதி, இடம் அடிப்படையில் முழுமையான ஜாதக பலன் கணிப்பு.</div>
+      <div class="service-foot">
+        <span class="price">₹200</span>
+        <a class="pay-link" href="tel:8489351933">முன்பதிவு →</a>
+      </div>
+    </div>
+
+    <div class="service-card">
+      <div class="service-glyph">☽</div>
+      <div class="service-name">திருமண பொருத்தம்</div>
+      <div class="service-desc">இரு ஜாதகங்களும் ஒப்பிட்டு பத்து பொருத்தம் மற்றும் தோஷ நிவாரண ஆலோசனை.</div>
+      <div class="service-foot">
+        <span class="price">₹200</span>
+        <a class="pay-link" href="tel:8489351933">முன்பதிவு →</a>
+      </div>
+    </div>
+
+    <div class="service-card">
+      <div class="service-glyph">✦</div>
+      <div class="service-name">ராசி பலன்</div>
+      <div class="service-desc">தற்போதைய கிரக நிலைகள் வைத்து உங்கள் ராசிக்கான ஆண்டு / மாத பலன்கள்.</div>
+      <div class="service-foot">
+        <span class="price">₹200</span>
+        <a class="pay-link" href="tel:8489351933">முன்பதிவு →</a>
+      </div>
+    </div>
+
+    <div class="service-card">
+      <div class="service-glyph">🕉</div>
+      <div class="service-name">பரிகாரம்</div>
+      <div class="service-desc">தோஷங்களுக்கு ஏற்ற தான, மந்திர மற்றும் விரத பரிகார வழிமுறைகள்.</div>
+      <div class="service-foot">
+        <span class="price">₹200</span>
+        <a class="pay-link" href="tel:8489351933">முன்பதிவு →</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- About Section -->
+<section id="about">
+  <div class="section-head">
+    <div class="section-eyebrow">About Us</div>
+    <div class="section-title">எங்களைப் பற்றி</div>
+  </div>
+  <div class="about-container">
+    <div class="about-top">
+      <div class="about-quote">
+        "நட்சத்திரங்கள் பாதையை காட்டும்; தேர்வு உங்கள் கையில்."
+      </div>
+      <div class="about-body">
+        <p><strong>ஸ்ரீ சாஸ்தா ஜோதிடம் (SRM Digital Services)</strong> நாகப்பட்டினம் மாவட்டத்தை சேர்ந்த <strong>சபரிகிரீஸ்வரன்</strong> அவர்களால் நடத்தப்படும் ஜோதிட ஆலோசனை மையம்.</p>
+        <p>பாரம்பரிய ஜோதிட நூல்களை அடிப்படையாக கொண்டு, ஜாதகம், பொருத்தம், ராசி பலன் மற்றும் பரிகாரங்கள் குறித்த தெளிவான, நேர்மையான ஆலோசனையை வழங்கி வருகிறோம்.</p>
+      </div>
+    </div>
+
+    <div class="about-details-box">
+      <h3>Welcome to Sri Sasta Astrology (a unit of SRM Digital Services)</h3>
+      <p style="color: var(--sand-dim); margin-bottom: 15px;">We provide professional, reliable, and detailed astrological consultation services to help people gain clarity and guidance in their lives.</p>
+      <h4 style="color: var(--sand); margin-bottom: 10px;">Our Services Include:</h4>
+      <ul>
+        <li>Horoscope Reading & Predictions (ஜாதகம் கணித்தல்)</li>
+        <li>Marriage Matching & Compatibility (திருமணப் பொருத்தம்)</li>
+        <li>Numerology & Name Selection (எண் கணிதம்)</li>
+        <li>Prasannam & General Life Guidance (ஜோதிட ஆலோசனைகள்)</li>
+        <li>Digital Business Consultation & Support Services</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- Contact Section -->
+<section id="contact">
+  <div class="section-head">
+    <div class="section-eyebrow">Contact Us</div>
+    <div class="section-title">தொடர்பு கொள்ள</div>
+  </div>
+  <div class="contact-panel">
+    <div class="contact-item">
+      <div class="label">Business Name & Contact</div>
+      <div class="value"><strong>SRM Digital Services / Sri Sasta Astrology</strong></div>
+      <div class="value" style="font-size:14px; color:var(--sand-dim); margin-top:4px;">Contact Person: சபரிகிரீஸ்வரன்</div>
+    </div>
+    <div class="contact-item">
+      <div class="label">Phone / WhatsApp</div>
+      <a class="value" href="tel:8489351933">+91 84893 51933</a>
+      <div class="label" style="margin-top: 15px;">Email</div>
+      <a class="value" href="mailto:sastha.astro01@gmail.com" style="font-size: 15px;">sastha.astro01@gmail.com</a>
+    </div>
+    <div class="contact-item">
+      <div class="label">Address & Hours</div>
+      <div class="value" style="font-size:15px;">நாகப்பட்டினம் மாவட்டம், தமிழ்நாடு.</div>
+      <div class="value" style="font-size:13px; color:var(--sand-dim); margin-top:6px;">Mon – Sat: 9:00 AM – 7:00 PM IST</div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- Terms, Privacy & Refund Policies Section -->
+<section id="policies">
+  <div class="section-head">
+    <div class="section-eyebrow">Legal & Policies</div>
+    <div class="section-title">தனியுரிமை மற்றும் நிபந்தனைகள்</div>
+  </div>
+
+  <!-- Privacy Policy -->
+  <div class="policy-box">
+    <h3>தனியுரிமைக் கொள்கை (Privacy Policy)</h3>
+    <p>At Sri Sasta Astrology (SRM Digital Services), we respect and value your privacy. This Privacy Policy outlines how we handle your information:</p>
+    <ul>
+      <li><strong>Information Collection:</strong> We collect basic personal details such as your Name, Date of Birth, Time of Birth, Place of Birth, Phone Number, and Email Address solely for generating accurate birth charts and contacting you for consultation.</li>
+      <li><strong>Data Confidentiality:</strong> All birth details, astrological consultation notes, and discussion details are strictly confidential. We do not sell, rent, or share your personal data with any third parties.</li>
+      <li><strong>Payment Information:</strong> We use secure and encrypted payment gateways (like Razorpay) to collect fees. We do not store your credit card, debit card, or UPI PIN details on our servers.</li>
+      <li><strong>Data Security:</strong> Reasonable security measures are taken to ensure your personal data is protected against unauthorized access.</li>
+    </ul>
+  </div>
+
+  <!-- Terms & Conditions -->
+  <div class="policy-box">
+    <h3>விதிமுறைகள் மற்றும் நிபந்தனைகள் (Terms & Conditions)</h3>
+    <p>By booking a consultation or using services provided by Sri Sasta Astrology (SRM Digital Services), you agree to the following terms:</p>
+    <ul>
+      <li><strong>Consultation Nature:</strong> Astrological predictions and consultations are based on traditional Vedic rules, astrological calculations, and subjective interpretation. They are intended for guidance purpose only.</li>
+      <li><strong>Service Delivery:</strong> Consultations are conducted via Phone Call, WhatsApp, Online Video Call, or Written Reports as agreed upon during booking.</li>
+      <li><strong>User Responsibility:</strong> Decisions made based on our consultation are solely the responsibility of the client. Astrology should not be used as a replacement for medical, legal, or professional financial advice.</li>
+      <li><strong>Payment Terms:</strong> Full payment must be made in advance before the scheduling or delivery of any astrology report/consultation.</li>
+    </ul>
+  </div>
+
+  <!-- Refund & Cancellation Policy -->
+  <div class="policy-box">
+    <h3>பணத்தைத் திரும்பப் பெறுதல் மற்றும் ரத்துசெய்தல் கொள்கை (Refund & Cancellation Policy)</h3>
+    <p>Please review our policy regarding service cancellations and refunds:</p>
+    
+    <h4>1. Cancellation by Client:</h4>
+    <ul>
+      <li>If you wish to cancel an appointment, you must notify us at least 24 hours before the scheduled consultation time to receive a refund (minus processing fees).</li>
+      <li>Cancellations made less than 24 hours prior to the slot or missed appointments (No-Shows) are not eligible for a refund.</li>
+    </ul>
+
+    <h4>2. Refund Eligibility:</h4>
+    <ul>
+      <li><strong>Before Service Delivery:</strong> If a refund request is approved prior to the start of consultation/chart generation, the amount will be processed back to your original payment method within 5 to 7 business days.</li>
+      <li><strong>After Service Delivery:</strong> Due to the personalized and time-based nature of astrology services, no refunds will be issued once the consultation is completed or the astrological report has been delivered.</li>
+    </ul>
+
+    <h4>3. Cancellation by Sri Sasta Astrology:</h4>
+    <p>In the rare event that we are unable to fulfill your appointment due to unforeseen circumstances, we will offer to reschedule your session or issue a 100% full refund.</p>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-links">
+    <a href="#about">எங்களைப் பற்றி</a> | 
+    <a href="#services">சேவைகள்</a> | 
+    <a href="#contact">தொடர்பு கொள்ள</a> | 
+    <a href="#policies">தனியுரிமைக் கொள்கை & நிபந்தனைகள்</a>
+  </div>
+  <div>© <span id="year"></span>2026 ஸ்ரீ சாஸ்தா ஜோதிடம். அனைத்து உரிமைகளும் பாதுகாக்கப்பட்டவை.</div>
+  <div class="power">Powered by SRM Digital Services</div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
